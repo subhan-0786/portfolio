@@ -1,0 +1,137 @@
+.experience {
+    padding: 80px 5%;
+    background: linear-gradient(to right, hsla(158, 23%, 18%, 1), rgb(59, 74, 69));
+    min-height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    color: #ffffff;
+  }
+  
+  .sectionTitle {
+    font-family: var(--titleFont);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  }
+  
+  .experienceContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .experienceCard {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 30px;
+    width: calc(50% - 15px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+  }
+  
+  .experienceCard:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+  }
+  
+  .experienceCard h3 {
+    font-size: 1.8rem;
+    color: #64ffda;
+    margin-bottom: 15px;
+  }
+  
+  .position, .duration, .location {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 1rem;
+  }
+  
+  .position svg, .duration svg, .location svg {
+    margin-right: 10px;
+    color: #64ffda;
+  }
+  
+  .achievements {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 20px 0;
+  }
+  
+  .achievements li {
+    margin-bottom: 10px;
+    padding-left: 25px;
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .checkIcon {
+    color: #64ffda;
+    margin-right: 10px;
+  }
+  
+  .testimonial {
+    font-style: italic;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 15px;
+    margin-top: 20px;
+  }
+  
+  .demoVideo {
+    width: 100%;
+    border-radius: 10px;
+    margin-top: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  @media (max-width: 1024px) {
+    .experienceCard {
+      width: 100%;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .experience {
+      padding: 60px 5%;
+    }
+  
+    .sectionTitle {
+      font-size: 2.5rem;
+    }
+  
+    .experienceCard {
+      padding: 20px;
+    }
+  
+    .experienceCard h3 {
+      font-size: 1.5rem;
+    }
+  
+    .position, .duration, .location {
+      font-size: 0.9rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .sectionTitle {
+      font-size: 2rem;
+    }
+  
+    .experienceCard h3 {
+      font-size: 1.3rem;
+    }
+  
+    .achievements li {
+      font-size: 0.9rem;
+    }
+  }
