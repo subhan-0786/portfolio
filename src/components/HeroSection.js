@@ -150,7 +150,7 @@ export default function HeroSection() {
                             <div className={styles.imageRing}></div>
                             <motion.div className={styles.imageFrame}>
                                 <motion.img
-                                    src="/SubhanCopy.png"
+                                    src="./SubhanCopy.png"
                                     alt="Subhan Amjad"
                                     className={styles.profileImage}
                                     initial={{ scale: 0.8, opacity: 0 }}
