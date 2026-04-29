@@ -85,7 +85,8 @@ export default function HeroSection() {
                             animate={{ y: 0, opacity: 1 }}
                             transition={{ duration: 0.8, delay: 0.5 }}
                         >
-                            Versatile Computer Science student with a strong passion for leveraging innovative technologies to build impactful solutions. Skilled at quickly learning new tools and delivering high-quality, efficient code.
+                            Versatile Computer Science student
+                            with a strong passion for leveraging innovative technologies to build impactful solutions. Skilled at quickly learning new tools and delivering high-quality, efficient code.
                         </motion.p>
 
                         <motion.div
@@ -150,7 +151,7 @@ export default function HeroSection() {
                             <div className={styles.imageRing}></div>
                             <motion.div className={styles.imageFrame}>
                                 <motion.img
-                                    src="./SubhanCopy.png"
+                                    src="/SubhanCopy.png"
                                     alt="Subhan Amjad"
                                     className={styles.profileImage}
                                     initial={{ scale: 0.8, opacity: 0 }}
