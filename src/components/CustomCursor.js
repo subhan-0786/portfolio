@@ -52,27 +52,15 @@ export default function CustomCursor() {
   if (!isVisible) return null;
 
   return (
-    <>
-      <motion.div
-        className={styles.cursorDot}
-        animate={{ 
-          x: mousePosition.x - 4, 
-          y: mousePosition.y - 4,
-          scale: isHovering ? 0 : 1
-        }}
-        transition={{ type: 'tween', ease: 'backOut', duration: 0.1 }}
-      />
-      <motion.div
-        className={styles.cursorRing}
-        animate={{ 
-          x: mousePosition.x - 16, 
-          y: mousePosition.y - 16,
-          scale: isHovering ? 1.5 : 1,
-          backgroundColor: isHovering ? 'rgba(59, 130, 246, 0.1)' : 'transparent',
-          borderColor: isHovering ? 'rgba(59, 130, 246, 0.5)' : 'rgba(59, 130, 246, 0.8)'
-        }}
-        transition={{ type: 'tween', ease: 'backOut', duration: 0.2 }}
-      />
-    </>
+    <motion.div
+      className={styles.cursor}
+      animate={{ 
+        x: mousePosition.x - (isHovering ? 40 : 10), 
+        y: mousePosition.y - (isHovering ? 40 : 10),
+        width: isHovering ? 80 : 20,
+        height: isHovering ? 80 : 20
+      }}
+      transition={{ type: 'tween', ease: 'easeOut', duration: 0.15 }}
+    />
   );
 }
