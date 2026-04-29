@@ -1,221 +1,130 @@
-/* Skills.module.css */
-.skills {
-  padding: 100px 5%;
-  background: linear-gradient(to right, #2c3e50, #4ca1af);
-  color: #ffffff;
-  font-family: var(--bodyFont);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+/* ===== Skills Marquee Section ===== */
+.skillsSection {
+  padding: 120px 0;
   position: relative;
+  background: var(--bg-primary);
   overflow: hidden;
 }
 
-.skills h2 {
-  font-size: 4.5rem;
-  margin-bottom: 50px;
-  color: #ffffff;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  font-weight: 700;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-  font-family: var(--titleFont);
-  text-align: center;
-}
-
-.skillsContainer {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 30px;
-  max-width: 1200px;
+.container {
+  /* We don't restrict max-width here so the marquee can bleed to the edges */
   width: 100%;
-  margin: 0 auto;
+  position: relative;
+  z-index: 2;
 }
 
-.skillItem {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 20px;
-  padding: 30px;
+.header {
+  max-width: var(--container-max);
+  margin: 0 auto 60px auto;
+  padding: 0 20px;
+  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-  aspect-ratio: 1 / 1;
 }
 
-.skillItem:hover {
-  background: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-}
-
-.skillIcon {
-  font-size: clamp(2rem, 4vw, 3rem);
-  margin-bottom: 15px;
-}
-
-.skillName {
-  font-size: clamp(1rem, 2vw, 1.5rem);
-  font-weight: 600;
-  margin-bottom: 15px;
-  text-align: center;
-}
-
-.skillProgress {
-  width: 80%;
-  max-width: 100px;
-}
-
-.skillDetails {
-  position: fixed;
-  top: 50%;
+/* Marquee Styles */
+.marqueeWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100vw;
+  position: relative;
   left: 50%;
-  transform: translate(-50%, -50%);
-  background: white;
-  padding: 40px;
-  border-radius: 20px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-  z-index: 1000;
-  color: #333;
-  max-width: 600px;
-  width: 90%;
+  transform: translateX(-50%);
+  /* Fades out the left and right edges for a smooth entrance/exit */
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10vw, black 90vw, transparent);
+  mask-image: linear-gradient(to right, transparent, black 10vw, black 90vw, transparent);
 }
 
-.skillDetails h3 {
-  font-size: clamp(1.8rem, 3vw, 2.5rem);
-  margin-bottom: 20px;
-  color: #2c3e50;
+.marqueeContainer {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
 }
 
-.skillDetails p {
-  font-size: clamp(0.9rem, 1.5vw, 1.1rem);
-  line-height: 1.6;
-  margin-bottom: 20px;
+.marqueeTrack {
+  display: flex;
+  gap: 20px;
+  padding: 10px 0;
+  width: max-content;
+  animation: scroll var(--duration) linear infinite;
 }
 
-.skillDetails button {
-  background: #4ca1af;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: clamp(0.8rem, 1.2vw, 1rem);
-  transition: background 0.3s ease;
+.marqueeTrack.reverse {
+  animation-direction: reverse;
 }
 
-.skillDetails button:hover {
-  background: #2c3e50;
+/* Pause animation on hover */
+.marqueeWrapper:hover .marqueeTrack {
+  animation-play-state: paused;
 }
 
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    /* Translate by exactly half since the array is duplicated */
+    transform: translateX(-50%);
+  }
+}
 
-.techStack {
-    margin-top: 50px;
-    text-align: center;
-  }
-  
-  .techStack h3 {
-    font-size: 2.5rem;
-    margin-bottom: 30px;
-    color: #ffffff;
-  }
-  
-  .techIcons {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-  
-  .techIcon {
-    font-size: 2.5rem;
-    background: rgba(255, 255, 255, 0.1);
-    width: 60px;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    cursor: pointer;
-  }
-  
+/* Individual Skill Pill */
+.skillPill {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 32px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 100px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  cursor: default;
+}
 
-  @media (max-width: 768px) {
-    .skills {
-      padding: 50px 20px;
-    }
-  
-    .skills h2 {
-      font-size: 3rem;
-    }
-  
-    .skillsContainer {
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    }
-  
-    .skillItem {
-      padding: 20px;
-    }
-  
-    .skillIcon {
-      font-size: 2.5rem;
-    }
-  
-    .skillName {
-      font-size: 1.2rem;
-    }
-  
-    .skillDetails h3 {
-      font-size: 2rem;
-    }
-  
-    .techStack h3 {
-      font-size: 2rem;
-    }
-  
-    .techIcon {
-      font-size: 2rem;
-      width: 50px;
-      height: 50px;
-    }
+.skillPill:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--accent-primary);
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3), 0 0 15px rgba(59, 130, 246, 0.2);
+}
+
+.pillIcon {
+  font-size: 1.5rem;
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+}
+
+.skillPill:hover .pillIcon {
+  color: #fff;
+  filter: drop-shadow(0 0 8px rgba(255,255,255,0.8));
+}
+
+.pillName {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  white-space: nowrap;
+  transition: color 0.3s ease;
+}
+
+.skillPill:hover .pillName {
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .skillPill {
+    padding: 12px 24px;
   }
   
-  @media (max-width: 480px) {
-    .skills h2 {
-      font-size: 2.5rem;
-    }
-  
-    .skillsContainer {
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    }
-  
-    .skillItem {
-      padding: 15px;
-    }
-  
-    .skillIcon {
-      font-size: 2rem;
-    }
-  
-    .skillName {
-      font-size: 1rem;
-    }
-  
-    .skillDetails h3 {
-      font-size: 1.8rem;
-    }
-  
-    .techStack h3 {
-      font-size: 1.8rem;
-    }
-  
-    .techIcon {
-      font-size: 1.8rem;
-      width: 40px;
-      height: 40px;
-    }
+  .pillIcon {
+    font-size: 1.2rem;
   }
+  
+  .pillName {
+    font-size: 0.95rem;
+  }
+}

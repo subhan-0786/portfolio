@@ -1,162 +1,154 @@
-/*Eduation.module.css*/
-.educationSection {
-    min-height: 100vh;
-    padding: 80px 5vw;
-    background: linear-gradient(to right, #2c3e50, #4ca1af);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
+/* ===== Education Section ===== */
+.education {
+  padding: var(--section-padding);
+  position: relative;
+  background: var(--bg-primary);
 }
 
-.title {
-    font-family: var(--titleFont);
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    font-weight: 700;
-    color: #ffffff;
-    margin-bottom: 2rem;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    text-align: center;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
 }
 
-.content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    max-width: 1200px;
-    gap: 4rem;
+.header {
+  margin-bottom: 56px;
 }
 
-.educationRow {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    gap: 4rem;
+.timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
 }
 
-.imageCarousel {
-    flex: 1;
-    position: relative;
-    overflow: hidden;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    aspect-ratio: 16 / 9;
-    max-width: 550px;
-    width: 100%;
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 24px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--accent-secondary), var(--accent-primary), transparent);
 }
 
-.carouselImage {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.timelineItem {
+  position: relative;
+  padding-left: 72px;
 }
 
-.imageOverlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-    padding: 20px;
-    color: #ffffff;
+.timelineDot {
+  position: absolute;
+  left: 14px;
+  top: 24px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--accent-gradient-reverse);
+  border: 4px solid var(--bg-primary);
+  z-index: 1;
+  box-shadow: 0 0 0 4px var(--accent-glow-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 0.7rem;
 }
 
-.imageOverlay h3 {
-    margin: 0;
-    font-size: clamp(0.9rem, 1.5vw, 1.1rem);
-    font-family: var(--bodyFont);
+.eduCard {
+  position: relative;
+  padding: 32px;
+  background: var(--bg-glass);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-medium);
+  overflow: hidden;
 }
 
-.educationCard {
-    flex: 1;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    padding: 2rem;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    color: #ffffff;
-    max-width: 550px;
-    width: 100%;
+.eduCard:hover {
+  border-color: var(--accent-secondary);
+  background: var(--accent-glow-secondary);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.2);
 }
 
 .degree {
-    font-family: var(--titleFont);
-    font-size: clamp(1.3rem, 2.5vw, 1.8rem);
-    margin-bottom: 0.5rem;
-    font-style: oblique;
-    color: #d3c528;
+  font-size: 1.35rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+  color: var(--text-primary);
 }
 
-.university {
-    font-family: var(--bodyFont);
-    font-size: clamp(0.9rem, 1.8vw, 1.1rem);
-    margin-bottom: 1rem;
-    font-weight: normal;
-    color: #e4c3c3;
+.institution {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--accent-secondary);
+  margin-bottom: 12px;
 }
 
-.infoContainer {
-    display:grid;
-    flex-direction: column;
-    gap: 1rem;
+.details {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  font-size: 0.9rem;
+  color: var(--text-tertiary);
+  margin-bottom: 20px;
 }
 
-.infoItem {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    font-family: var(--bodyFont);
-    font-size: clamp(1rem, 1.4vw, 0.9rem);
+.detailItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.03);
+  padding: 6px 14px;
+  border-radius: 100px;
+  border: 1px solid var(--border-glass);
 }
 
-.icon {
-    font-size: 1.1rem;
-    color: #d3c528;
+.description {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
 }
 
-@media (max-width: 1024px) {
-    .educationRow {
-        flex-direction:column;
-    }
-    
-    .educationRow:nth-child(even) {
-        flex-direction: column-reverse;
-    }
-    
-    .imageCarousel, .educationCard {
-        max-width: 100%;
-    }
+.certGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  margin-top: 24px;
+}
+
+.certCard {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+}
+
+.certCard:hover {
+  border-color: var(--accent-primary);
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateY(-2px);
+}
+
+.certIcon {
+  color: var(--accent-secondary);
+  font-size: 1.2rem;
+}
+
+.certText {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
 }
 
 @media (max-width: 768px) {
-    .educationSection {
-        padding: 60px 20px;
-    }
-    
-    .content {
-        gap: 2rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .educationCard {
-        padding: 1.5rem;
-    }
-    
-    .degree {
-        font-size: clamp(1.2rem, 4vw, 1.5rem);
-    }
-    
-    .university {
-        font-size: clamp(0.9rem, 3vw, 1rem);
-    }
-    
-    .infoItem {
-        font-size: clamp(0.8rem, 2.5vw, 0.9rem);
-    }
+  .timeline::before { left: 16px; }
+  .timelineItem { padding-left: 52px; }
+  .timelineDot { left: 6px; width: 20px; height: 20px; }
+  .eduCard { padding: 24px; }
 }

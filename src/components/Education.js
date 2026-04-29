@@ -1,137 +1,109 @@
-//Education.js
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { FaGraduationCap, FaCalendarAlt, FaStar } from 'react-icons/fa';
+import { motion } from 'framer-motion';
+import { FaGraduationCap, FaUniversity, FaCalendarAlt, FaMapMarkerAlt, FaCertificate } from 'react-icons/fa';
 import styles from '../styles/Education.module.css';
 
 export default function Education() {
-    const [currentImageBachelor, setCurrentImageBachelor] = useState(0);
-    const [currentImageFSc, setCurrentImageFSc] = useState(0);
+  const educationData = [
+    {
+      degree: "BS Computer & Information Sciences",
+      institution: "Pakistan Institute of Engineering and Applied Sciences (PIEAS)",
+      location: "Islamabad, Pakistan",
+      duration: "Sep 2022 - June 2026",
+      description: "Currently pursuing a degree with a strong focus on software engineering, AI, and computer fundamentals. Actively involved in campus tech societies like PIEAS Cyber Security Club and PIEAS AI Society.",
+      icon: FaUniversity
+    },
+    {
+      degree: "FSc Pre-Engineering",
+      institution: "Forman Christian College",
+      location: "Lahore, Pakistan",
+      duration: "Oct 2020 - Aug 2022",
+      description: "Focused on core sciences and mathematics, establishing a rigorous academic background and strong problem-solving skills to prepare for a career in technology.",
+      icon: FaGraduationCap
+    }
+  ];
 
-    const bachelorImages = [
-        { src: "/00.webp", title: "INAM UR REHMAN AUDITORIUM" },
-        { src: "/04.jpg", title: "CENTRAL LIBRARY" },
-        { src: "/01.jpg", title: "MULTI PURPOSE HALL" },
-        { src: "/02.webp", title: "BASKETBALL COURT" },
-        { src: "/03.jpg", title: "DTD BUILDING" }
-    ];
+  const certifications = [
+    "DataCamp Associate Data Engineer",
+    "DataCamp Associate Data Scientist",
+    "DataCamp Associate Data Analyst"
+  ];
 
-    const fscImages = [
-        { src: "/21.webp", title: "ARMACOUST BUILDING" },
-        { src: "/22.webp", title: "MAIN AUDITORIUM" },
-        { src: "/13.jpg", title: "MERCY HEALTH CENTER" },
-        { src: "/23.jpg", title: "COUNSELLING WORKSHOPS" },
-        { src: "/15.jpg", title: "FSC Building 7" },
-    ];
+  return (
+    <section id="education" className={styles.education}>
+      <div className={styles.container}>
+        <div className={styles.header}>
+          <div className="section-label">Academic Background</div>
+          <h2 className="section-title">My <span className="gradient-text">Education</span></h2>
+          <p className="section-subtitle">
+            The foundation of my technical knowledge, analytical skills, and professional certifications.
+          </p>
+        </div>
 
-    useEffect(() => {
-        const intervalBachelor = setInterval(() => {
-            setCurrentImageBachelor((prev) => (prev + 1) % bachelorImages.length);
-        }, 5000);
+        <div className={styles.timeline}>
+          {educationData.map((edu, index) => {
+            return (
+              <motion.div
+                key={index}
+                className={styles.timelineItem}
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
+              >
+                <div className={styles.timelineDot} />
 
-        const intervalFSc = setInterval(() => {
-            setCurrentImageFSc((prev) => (prev + 1) % fscImages.length);
-        }, 5000);
+                <div className={styles.eduCard}>
+                  <h3 className={styles.degree}>{edu.degree}</h3>
+                  <div className={styles.institution}>{edu.institution}</div>
 
-        return () => {
-            clearInterval(intervalBachelor);
-            clearInterval(intervalFSc);
-        };
-    }, []);
+                  <div className={styles.details}>
+                    <div className={styles.detailItem}>
+                      <FaCalendarAlt style={{ color: 'var(--accent-secondary)' }} />
+                      {edu.duration}
+                    </div>
+                    <div className={styles.detailItem}>
+                      <FaMapMarkerAlt style={{ color: 'var(--accent-primary)' }} />
+                      {edu.location}
+                    </div>
+                  </div>
 
-    const ImageCarousel = ({ images, currentImage }) => (
-        <motion.div 
-            className={styles.imageCarousel}
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 300 }}
-        >
-            <AnimatePresence mode='wait'>
-                <motion.img
-                    key={currentImage}
-                    src={images[currentImage].src}
-                    alt={images[currentImage].title}
-                    className={styles.carouselImage}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.5 }}
-                />
-            </AnimatePresence>
-            <motion.div 
-                className={styles.imageOverlay}
-                initial={{ y: 50, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.2 }}
-            >
-                <h3>{images[currentImage].title}</h3>
-            </motion.div>
-        </motion.div>
-    );
+                  <p className={styles.description}>{edu.description}</p>
+                </div>
+              </motion.div>
+            );
+          })}
 
-    return (
-        <section className={styles.educationSection}>
-            <motion.h2
-                className={styles.title}
-                initial={{ y: -50, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.8 }}
-            >
-                Education
-            </motion.h2>
-            <div className={styles.content}>
-                <motion.div
-                    className={styles.educationRow}
-                    initial={{ opacity: 0, y: 50 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
-                >
-                    <motion.div 
-                        className={styles.educationCard}
-                        whileHover={{ scale: 1.03 }}
-                        transition={{ type: "spring", stiffness: 300 }}
-                    >
-                        <h3 className={styles.degree}>Bachelor of Computer Science</h3>
-                        <h4 className={styles.university}>Pakistan Institute of Engineering and Applied Sciences</h4>
-                        <div className={styles.infoContainer}>
-                            <div className={styles.infoItem}>
-                                <FaCalendarAlt className={styles.icon} />
-                                <p>Sep. 2022 – Present</p>
-                            </div>
-                            <div className={styles.infoItem}>
-                                <FaStar className={styles.icon} />
-                                <p>Grade: 3.70 / 4.00</p>
-                            </div>
-                        </div>
-                    </motion.div>
-                    <ImageCarousel images={bachelorImages} currentImage={currentImageBachelor} />
-                </motion.div>
-                <motion.div
-                    className={styles.educationRow}
-                    initial={{ opacity: 0, y: 50 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.2 }}
-                >
-                    <ImageCarousel images={fscImages} currentImage={currentImageFSc} />
-                    <motion.div 
-                        className={styles.educationCard}
-                        whileHover={{ scale: 1.03 }}
-                        transition={{ type: "spring", stiffness: 300 }}
-                    >
-                        <h3 className={styles.degree}>FSc Pre-Engineering</h3>
-                        <h4 className={styles.university}>Forman Christian College</h4>
-                        <div className={styles.infoContainer}>
-                            <div className={styles.infoItem}>
-                                <FaCalendarAlt className={styles.icon} />
-                                <p>2020 – 2022</p>
-                            </div>
-                            <div className={styles.infoItem}>
-                                <FaStar className={styles.icon} />
-                                <p>Merit-based Scholarship Holder</p>
-                            </div>
-                        </div>
-                    </motion.div>
-                </motion.div>
+          <motion.div
+            className={styles.timelineItem}
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            <div className={styles.timelineDot} />
+
+            <div className={styles.eduCard} style={{ background: 'transparent', borderColor: 'transparent', padding: '0 0 20px 0' }}>
+              <h3 className={styles.degree} style={{ fontSize: '1.2rem' }}>Professional Certifications</h3>
+              <p className={styles.description}>
+                Continuous learning through specialized industry certifications.
+              </p>
+
+              <div className={styles.certGrid}>
+                {certifications.map((cert, idx) => (
+                  <motion.div
+                    key={idx}
+                    className={styles.certCard}
+                    whileHover={{ scale: 1.02 }}
+                  >
+                    <FaCertificate className={styles.certIcon} />
+                    <span className={styles.certText}>{cert}</span>
+                  </motion.div>
+                ))}
+              </div>
             </div>
-        </section>
-    );
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
 }

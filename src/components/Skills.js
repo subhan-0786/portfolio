@@ -1,119 +1,81 @@
-//Skills.js
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
-import 'react-circular-progressbar/dist/styles.css';
+import { motion } from 'framer-motion';
+import { 
+  SiPython, SiCplusplus, SiJavascript, SiReact, 
+  SiNextdotjs, SiNodedotjs, SiTensorflow, SiPytorch, 
+  SiOpencv, SiDart, SiGithub, SiHtml5, SiAppwrite, SiScikitlearn
+} from 'react-icons/si';
+import { DiSqllite } from 'react-icons/di';
+import { FaChartBar, FaCamera, FaDatabase, FaLaptopCode, FaBrain } from 'react-icons/fa';
 import styles from '../styles/Skills.module.css';
 
-const Skills = () => {
-  const [selectedSkill, setSelectedSkill] = useState(null);
-  const [isInView, setIsInView] = useState(false);
+const row1 = [
+  { name: "Python", icon: SiPython },
+  { name: "JavaScript", icon: SiJavascript },
+  { name: "React.js", icon: SiReact },
+  { name: "Next.js", icon: SiNextdotjs },
+  { name: "Node.js", icon: SiNodedotjs },
+  { name: "C++", icon: SiCplusplus },
+  { name: "HTML / CSS", icon: SiHtml5 },
+];
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsInView(true);
-        }
-      },
-      { threshold: 0.1 }
-    );
+const row2 = [
+  { name: "TensorFlow", icon: SiTensorflow },
+  { name: "PyTorch", icon: SiPytorch },
+  { name: "Scikit-learn", icon: SiScikitlearn },
+  { name: "OpenCV", icon: SiOpencv },
+  { name: "Feature Engineering", icon: FaBrain },
+  { name: "AR / VR", icon: FaCamera },
+  { name: "Data Modeling", icon: FaDatabase },
+];
 
-    observer.observe(document.querySelector(`.${styles.skills}`));
+const row3 = [
+  { name: "SQL", icon: DiSqllite },
+  { name: "Power BI", icon: FaChartBar },
+  { name: "Dart", icon: SiDart },
+  { name: "Appwrite", icon: SiAppwrite },
+  { name: "Git / GitHub", icon: SiGithub },
+  { name: "Systems Design", icon: FaLaptopCode },
+  { name: "Agile / Scrum", icon: FaLaptopCode },
+];
 
-    return () => observer.disconnect();
-  }, []);
-
-  const skills = [
-    { name: 'Python', level: 90, icon: '🐍', color: '#3776AB' },
-    { name: 'C/C++', level: 85, icon: '⚙️', color: '#00599C' },
-    { name: 'JavaScript', level: 80, icon: '🌐', color: '#F7DF1E' },
-    { name: 'HTML/CSS', level: 95, icon: '🎨', color: '#E34F26' },
-    { name: 'Dart', level: 75, icon: '🎯', color: '#0175C2' },
-    { name: 'Next.js', level: 70, icon: '⚛️', color: '#000000' },
-    { name: 'GitHub', level: 88, icon: '🐙', color: '#181717' },
-    { name: 'Packet Tracer', level: 78, icon: '🖧', color: '#1BA0D7' },
-  ];
-
-  const skillDescriptions = {
-    Python: "Proficient in Python for data analysis, machine learning, and web development. Experienced with libraries like NumPy, Pandas, and TensorFlow.",
-    'C/C++': "Strong foundation in C/C++ for system-level programming and algorithm implementation. Familiar with object-oriented design principles.",
-    JavaScript: "Skilled in modern JavaScript (ES6+) for both front-end and back-end development. Experienced with popular frameworks and libraries.",
-    'HTML/CSS': "Expert in creating responsive and accessible web layouts. Proficient with CSS preprocessors and modern layout techniques like Flexbox and Grid.",
-    Dart: "Competent in Dart programming language, primarily used for developing cross-platform mobile applications with Flutter.",
-    'Next.js': "Experienced in building server-side rendered React applications with Next.js, focusing on performance and SEO optimization.",
-    GitHub: "Well-versed in Git version control and collaborative development using GitHub. Familiar with branching strategies and CI/CD workflows.",
-    'Packet Tracer': "Skilled in network simulation and troubleshooting using Cisco Packet Tracer. Experienced in designing and configuring complex network topologies.",
-  };
+export default function Skills() {
+  // We duplicate the items in each row to create a seamless infinite scrolling effect
+  const renderMarquee = (items, reverse = false, duration = "40s") => (
+    <div className={styles.marqueeContainer}>
+      <div 
+        className={`${styles.marqueeTrack} ${reverse ? styles.reverse : ''}`}
+        style={{ '--duration': duration }}
+      >
+        {[...items, ...items].map((skill, index) => {
+          const Icon = skill.icon;
+          return (
+            <div key={`${skill.name}-${index}`} className={styles.skillPill}>
+              <Icon className={styles.pillIcon} />
+              <span className={styles.pillName}>{skill.name}</span>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
 
   return (
-    <section className={styles.skills}>
-      <motion.h2
-        initial={{ y: -50, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-      >
-        TECHNICAL SKILLS
-      </motion.h2>
-      <div className={styles.skillsContainer}>
-        {skills.map((skill, index) => (
-          <motion.div
-            key={skill.name}
-            className={styles.skillItem}
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-            whileHover={{ scale: 1.05, rotate: 5 }}
-            onClick={() => setSelectedSkill(skill)}
-          >
-            <div className={styles.skillIcon} style={{ color: skill.color }}>{skill.icon}</div>
-            <h3 className={styles.skillName}>{skill.name}</h3>
-            <div className={styles.skillProgress}>
-              <CircularProgressbar
-                value={skill.level}
-                text={`${skill.level}%`}
-                styles={buildStyles({
-                  textSize: '24px',
-                  pathColor: skill.color,
-                  textColor: '#ffffff',
-                  trailColor: 'rgba(255,255,255,0.2)',
-                })}
-              />
-            </div>
-          </motion.div>
-        ))}
-      </div>
-      <AnimatePresence>
-        {selectedSkill && (
-          <motion.div
-            className={styles.skillDetails}
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 50 }}
-          >
-            <h3>{selectedSkill.name}</h3>
-            <p>{skillDescriptions[selectedSkill.name]}</p>
-            <button onClick={() => setSelectedSkill(null)}>Close</button>
-          </motion.div>
-        )}
-      </AnimatePresence>
-      <div className={styles.techStack}>
-       
-        <div className={styles.techIcons}>
-          {skills.map((skill) => (
-            <motion.div
-              key={skill.name}
-              className={styles.techIcon}
-              whileHover={{ scale: 1.2, rotate: 360 }}
-              transition={{ duration: 0.3 }}
-            >
-              {skill.icon}
-            </motion.div>
-          ))}
+    <section id="skills" className={styles.skillsSection}>
+      <div className={styles.container}>
+        <div className={styles.header}>
+          <div className="section-label">Capabilities</div>
+          <h2 className="section-title">Technical <span className="gradient-text">Ecosystem</span></h2>
+          <p className="section-subtitle">
+            A diverse stack of technologies spanning web development, AI, and data science.
+          </p>
+        </div>
+
+        <div className={styles.marqueeWrapper}>
+          {renderMarquee(row1, false, "35s")}
+          {renderMarquee(row2, true, "45s")}
+          {renderMarquee(row3, false, "40s")}
         </div>
       </div>
     </section>
   );
-};
-
-export default Skills;
+}

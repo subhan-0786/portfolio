@@ -1,45 +1,46 @@
-// Footer.js
 import { motion } from 'framer-motion';
+import { FaArrowUp } from 'react-icons/fa';
 import styles from '../styles/Footer.module.css';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
-
-  const socialLinks = [
-    { name: 'GitHub', url: 'https://github.com/subhan', icon: 'fab fa-github' },
-    { name: 'LinkedIn', url: 'https://linkedin.com/in/subhan', icon: 'fab fa-linkedin' },
-    { name: 'Email', url: 'mailto:subhanamjad507@gmail.com', icon: 'fas fa-envelope' },
-    { name: 'WhatsApp', url: 'https://wa.me/1234567890', icon: 'fab fa-whatsapp' }, // Replace with your actual WhatsApp number
-  ];
+  
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   return (
     <footer className={styles.footer}>
-      <div className={styles.footerContent}>
-        <motion.div 
-          className={styles.footerSocial}
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        >
-          <h4>Connect</h4>
-          <div className={styles.socialIcons}>
-            {socialLinks.map((link) => (
-              <motion.a
-                key={link.name}
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.2, rotate: 5 }}
-                className={link.name === 'WhatsApp' ? styles.whatsappButton : ''}
-              >
-                <i className={link.icon}></i>
-              </motion.a>
-            ))}
+      <div className={styles.container}>
+        <div className={styles.content}>
+          <div className={styles.brand}>
+            <div className={styles.logo}>
+              Subhan<span className="gradient-text">.</span>
+            </div>
+            <p className={styles.tagline}>
+              Building intelligent software and scalable solutions for the future.
+            </p>
           </div>
-        </motion.div>
-      </div>
-      <div className={styles.footerBottom}>
-        <p>© {currentYear} All rights reserved.</p>
+          
+          <div className={styles.actions}>
+            <button className={styles.scrollTopBtn} onClick={scrollToTop} aria-label="Scroll to top">
+              <FaArrowUp />
+            </button>
+          </div>
+        </div>
+        
+        <div className={styles.divider}></div>
+        
+        <div className={styles.bottomBar}>
+          <p className={styles.copyright}>
+            &copy; {currentYear} Subhan Amjad. All rights reserved.
+          </p>
+          <div className={styles.links}>
+            <a href="https://linkedin.com/in/subhanamjad" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="https://github.com/subhan-0786" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="mailto:subhanamjad507@gmail.com">Email</a>
+          </div>
+        </div>
       </div>
     </footer>
   );
