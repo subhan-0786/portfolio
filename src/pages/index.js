@@ -22,10 +22,10 @@ export default function Home() {
       <Navbar />
       <main style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
         <HeroSection />
-        <Experience />
-        <Projects />
         <Skills />
+        <Experience />
         <Education />
+        <Projects />
         <Volunteer />
         <Contact />
       </main>

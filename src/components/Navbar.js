@@ -28,10 +28,10 @@ const Navbar = () => {
       </div>
       
       <div className={`${styles.navLinks} ${menuOpen ? styles.navLinksOpen : ''}`}>
-        <button onClick={() => scrollToSection('experience')}>Experience</button>
-        <button onClick={() => scrollToSection('projects')}>Projects</button>
         <button onClick={() => scrollToSection('skills')}>Skills</button>
+        <button onClick={() => scrollToSection('experience')}>Experience</button>
         <button onClick={() => scrollToSection('education')}>Education</button>
+        <button onClick={() => scrollToSection('projects')}>Projects</button>
         <button onClick={() => scrollToSection('volunteer')}>Volunteer</button>
         <button onClick={() => scrollToSection('contact')}>Contact</button>
       </div>
