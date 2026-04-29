@@ -1,12 +1,55 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaEnvelope, FaPhoneAlt, FaMapMarkerAlt, FaPaperPlane, FaLinkedinIn, FaGithub } from 'react-icons/fa';
 import { SiLeetcode } from 'react-icons/si';
 import styles from '../styles/Contact.module.css';
 
 export default function Contact() {
-  const handleSubmit = (e) => {
+  const [status, setStatus] = useState('');
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert("Message feature coming soon! Please email me directly.");
+    setStatus('Sending...');
+
+    const message = e.target.message.value.trim();
+    const wordCount = message.split(/\s+/).filter(word => word.length > 0).length;
+
+    if (wordCount < 10) {
+      alert("Please provide more details! Your message must be at least 10 words.");
+      setStatus('');
+      return;
+    }
+
+    // Web3Forms API Key
+    const accessKey = "db7078fc-7049-47c0-becf-be25f6e34a9d";
+
+    if (accessKey === "YOUR_ACCESS_KEY_HERE") {
+      alert("Almost there! Please follow my instructions in the chat to get your free Access Key.");
+      setStatus('');
+      return;
+    }
+
+    const formData = new FormData(e.target);
+    formData.append("access_key", accessKey);
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setStatus('Message sent successfully! ✓');
+        e.target.reset();
+        setTimeout(() => setStatus(''), 3000);
+      } else {
+        setStatus('Failed to send. Try again.');
+      }
+    } catch (error) {
+      setStatus('Network error occurred.');
+    }
   };
 
   return (
@@ -87,21 +130,21 @@ export default function Contact() {
           >
             <div className={styles.inputGroup}>
               <label className={styles.label}>Your Name</label>
-              <input type="text" className={styles.input} required placeholder="John Doe" />
+              <input type="text" name="name" className={styles.input} required placeholder="John Doe" />
             </div>
 
             <div className={styles.inputGroup}>
               <label className={styles.label}>Your Email</label>
-              <input type="email" className={styles.input} required placeholder="john@example.com" />
+              <input type="email" name="email" className={styles.input} required placeholder="john@example.com" />
             </div>
 
             <div className={styles.inputGroup}>
               <label className={styles.label}>Message</label>
-              <textarea className={styles.textarea} required placeholder="How can I help you?"></textarea>
+              <textarea name="message" className={styles.textarea} required placeholder="How can I help you?"></textarea>
             </div>
 
-            <button type="submit" className={styles.submitBtn}>
-              Send Message <FaPaperPlane />
+            <button type="submit" className={styles.submitBtn} disabled={status === 'Sending...'}>
+              {status || 'Send Message'} <FaPaperPlane />
             </button>
           </motion.form>
         </div>
