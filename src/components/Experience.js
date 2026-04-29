@@ -9,7 +9,7 @@ const experiences = [
         location: "Islamabad, Pakistan",
         duration: "Sep 2025 – Jun 2026",
         achievements: [
-            "Working under Dr. Nouman Shamim on CIS-121 (OOP course).",
+            "Working with Dr. Nouman Shamim on CIS-121 (OOP course).",
             "Taught Computer Fundamentals and Programming Lab (Sep 2025 – Jan 2026).",
             "Teaching Object Oriented Programming Lab (Feb 2026 – Jun 2026)."
         ]

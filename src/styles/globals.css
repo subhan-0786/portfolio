@@ -178,3 +178,5 @@ ul, ol {
   max-width: 600px;
   line-height: 1.7;
 }
+@media (pointer: fine) { * { cursor: none !important; } }
+

@@ -17,7 +17,7 @@ export default function Education() {
       institution: "Forman Christian College",
       location: "Lahore, Pakistan",
       duration: "Oct 2020 - Aug 2022",
-      description: "Focused on core sciences and mathematics, establishing a rigorous academic background and strong problem-solving skills to prepare for a career in technology.",
+      description: "Focused on core sciences and mathematics, establishing a rigorous academic background and strong problem-solving skills.",
       icon: FaGraduationCap
     }
   ];
