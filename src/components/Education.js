@@ -4,10 +4,10 @@ import styles from '../styles/Education.module.css';
 
 export default function Education() {
   const certifications = [
-    "Postman Student Expert",
-    "DataCamp Associate Data Engineer",
-    "DataCamp Associate Data Analyst",
-    "DataCamp Associate Data Scientist"
+    { name: "Postman Student Expert", link: "https://drive.google.com/file/d/1tUhRArFmHA8dZwZ41p7s9pHdL_DKjvjd/view?usp=sharing" },
+    { name: "DataCamp Associate Data Engineer", link: "https://www.datacamp.com/certificate/DEA0014992714823" },
+    { name: "DataCamp Associate Data Analyst", link: "https://www.datacamp.com/certificate/DAA0011149682251" },
+    { name: "DataCamp Associate Data Scientist", link: "https://www.datacamp.com/certificate/DSA0019974603214" }
   ];
 
   return (
@@ -97,8 +97,13 @@ export default function Education() {
             <div className={styles.certGrid}>
               {certifications.map((cert, index) => (
                 <div key={index} className={styles.certItem}>
-                  <FaCertificate className={styles.certIcon} />
-                  <span>{cert}</span>
+                  <div className={styles.certName}>
+                    <FaCertificate className={styles.certIcon} />
+                    <span>{cert.name}</span>
+                  </div>
+                  <a href={cert.link} target="_blank" rel="noopener noreferrer" className={styles.verifyBtn}>
+                    Verify
+                  </a>
                 </div>
               ))}
             </div>
